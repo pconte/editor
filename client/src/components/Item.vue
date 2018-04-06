@@ -2,15 +2,21 @@
   <div class="item">
     <h1>Item</h1>
     This file will contain the item detail.
+    <p>
+      <span><b>{{ item.title }}</b></span><br />
+      <span>{{ item.description }}</span>
+    </p>
   </div>
 </template>
 
 <script>
+import ItemsService from '@/services/ItemsService'
+
 export default {
   name: 'item',
   data () {
     return {
-      items: []
+      item: {}
     }
   },
   mounted () {
@@ -19,7 +25,7 @@ export default {
   methods: {
     async getItem () {
       const response = await ItemsService.fetchItem()
-      this.posts = response.data
+      this.item = response.data
     }
   }
 }

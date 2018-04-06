@@ -17,4 +17,13 @@ app.get('/items', (req, res) => {
     )
   })
 
+app.get('/item', (req, res) => {
+    res.send(
+      {
+        title: "Hello World!",
+        description: "Hi there! How are you?  Item"
+      }
+    )
+  })
+
 app.listen(process.env.PORT || 8081)

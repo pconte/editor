@@ -20,7 +20,7 @@ export default new Router({
     },
     {
       path: '/item',
-      name: 'item',
+      name: 'Item',
       component: Item
     }
   ]
