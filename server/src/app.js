@@ -8,7 +8,7 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/posts', (req, res) => {
+app.get('/items', (req, res) => {
     res.send(
       [{
         title: "Hello World!",
