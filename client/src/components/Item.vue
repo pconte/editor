@@ -1,14 +1,8 @@
 <template>
   <div class="item">
     <h1>Item</h1>
-    This file will contain the item detail.
-    <p>
-      <span><b>{{ item.title }}</b></span><br />
-      <span>{{ item.description }}</span>
-    </p>
-    <button v-on:click="postItem()">Post</button>
     <div class="panel-body">
-      <form name="some-form" v-on:submit="postItem()">
+      <form id="item-form" @submit="postItem()">
         <vue-form-generator :schema="schema" :model="item"></vue-form-generator>
         <button type="submit">Submit</button>
       </form>
@@ -29,6 +23,7 @@ export default {
           {
             type: 'input',
             inputType: 'text',
+            id: 'title',
             label: 'Title (disabled text field)',
             model: 'title',
             readonly: true,
@@ -37,6 +32,7 @@ export default {
           {
             type: 'input',
             inputType: 'text',
+            id: 'description',
             label: 'Description',
             model: 'description',
             placeholder: '...',
@@ -56,8 +52,13 @@ export default {
       this.item = response.data
     },
     async postItem () {
-      console.log('post item')
-      const response = await ItemsService.postItem({'key': 'testing'})
+      const itemForm = document.getElementById('item-form')
+      let payload = {
+        'title': itemForm.title.value,
+        'description': itemForm.description.value
+      }
+
+      const response = await ItemsService.postItem(payload)
       this.item = response.data
     }
   }
