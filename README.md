@@ -13,3 +13,15 @@ possibilities:
 - generate json-schema files from existing config files (https://jsonschema.net/)
 - store json-schema files on the server in parallel with the config files
 - server responses include the json-schema and the config
+
+for production:
+- git clone
+- cd client
+- npm install
+- npm run build
+- cd ..
+- cd server
+- npm install
+- npm start
+This will serve the full app to the client from the server root endpoint,
+along with api data at the other endpoints (maybe preface those endpoints with api)
