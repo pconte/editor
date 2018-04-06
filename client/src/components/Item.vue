@@ -8,7 +8,10 @@
     </p>
     <button v-on:click="postItem()">Post</button>
     <div class="panel-body">
-      <vue-form-generator :schema="schema" :model="item"></vue-form-generator>
+      <form name="some-form" v-on:submit="postItem()">
+        <vue-form-generator :schema="schema" :model="item"></vue-form-generator>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </template>
@@ -53,6 +56,7 @@ export default {
       this.item = response.data
     },
     async postItem () {
+      console.log('post item')
       const response = await ItemsService.postItem({'key': 'testing'})
       this.item = response.data
     }
