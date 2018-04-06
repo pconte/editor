@@ -6,6 +6,7 @@
       <span><b>{{ item.title }}</b></span><br />
       <span>{{ item.description }}</span>
     </p>
+    <button v-on:click="postItem()">Post</button>
   </div>
 </template>
 
@@ -25,6 +26,10 @@ export default {
   methods: {
     async getItem () {
       const response = await ItemsService.fetchItem()
+      this.item = response.data
+    },
+    async postItem () {
+      const response = await ItemsService.postItem({'key': 'testing'})
       this.item = response.data
     }
   }

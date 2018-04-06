@@ -6,5 +6,8 @@ export default {
   },
   fetchItem () {
     return Api().get('item')
+  },
+  postItem (payload) {
+    return Api().post('item', payload)
   }
 }

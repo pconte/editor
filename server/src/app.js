@@ -26,4 +26,16 @@ app.get('/item', (req, res) => {
     )
   })
 
+app.post('/item', (req, res) => {
+    res.setHeader('Content-Type', 'application/json')
+    //TODO: persist posted data to file system
+    console.log(req.body);
+    res.send(
+      {
+        title: "Good bye",
+        description: "Later!"
+      }
+    )
+  })
+
 app.listen(process.env.PORT || 8081)
