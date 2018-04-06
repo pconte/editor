@@ -7,6 +7,9 @@
       <span>{{ item.description }}</span>
     </p>
     <button v-on:click="postItem()">Post</button>
+    <div class="panel-body">
+      <vue-form-generator :schema="schema" :model="item"></vue-form-generator>
+    </div>
   </div>
 </template>
 
@@ -17,7 +20,28 @@ export default {
   name: 'item',
   data () {
     return {
-      item: {}
+      item: {},
+      schema: {
+        fields: [
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'Title (disabled text field)',
+            model: 'title',
+            readonly: true,
+            disabled: true
+          },
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'Description',
+            model: 'description',
+            placeholder: '...',
+            featured: true,
+            required: true
+          }
+        ]
+      }
     }
   },
   mounted () {
