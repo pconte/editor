@@ -10,6 +10,7 @@
 used these sites for reference:
 - https://medium.com/@anaida07/mevn-stack-application-part-1-3a27b61dcae0
 - https://github.com/vue-generators/vue-form-generator
+- https://github.com/formschema/native
 
 installed vue.js
 - with webpack
