@@ -31,10 +31,7 @@ app.post('/item', (req, res) => {
     //TODO: persist posted data to file system
     console.log(req.body);
     res.send(
-      {
-        title: "Good bye",
-        description: "Later!"
-      }
+      req.body
     )
   })
 
