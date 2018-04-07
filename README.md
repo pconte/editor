@@ -11,6 +11,7 @@ installed vue.js
 
 possibilities:
 - generate json-schema files from existing config files (https://jsonschema.net/)
+- use this instead: https://github.com/Nijikokun/generate-schema
 - store json-schema files on the server in parallel with the config files
 - server responses include the json-schema and the config
 

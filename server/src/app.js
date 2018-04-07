@@ -45,4 +45,55 @@ app.post('/item', (req, res) => {
   )
 })
 
+app.get('/files', (req, res) => {
+  var fs = require('fs')
+  var files = []
+
+  fs.readdir('../files/', (err, fileNames) => {
+    fileNames.forEach(fileName => {
+      files.push({
+        "fileName": fileName
+      })
+    })
+
+    fs.readdir('../schemas/', (err, fileNames) => {
+      fileNames.forEach(fileName => {
+        var fileIndex = files.findIndex(obj => obj.fileName === fileName)
+
+        files[fileIndex].schemaName = fileName
+      })
+
+      res.send(files)
+    })
+  })
+})
+
+app.get('/files/:path', (req, res) => {
+  var fs = require('fs')
+  var path = req.params.path
+
+  fs.readFile('../files/' + path + '.json', (err, file) => {
+    console.log(file)
+    res.send(JSON.parse(file))
+  })
+})
+
+app.get('/file', (req, res) => {
+  var fs = require('fs')
+
+  fs.readFile('../files/newsletter-subscription.json', (err, file) => {
+    console.log(file)
+    res.send(JSON.parse(file))
+  })
+})
+
+app.get('/schema', (req, res) => {
+  var fs = require('fs')
+
+  fs.readFile('../schemas/newsletter-subscription.json', (err, data) => {
+    console.log(data)
+    res.send(JSON.parse(data))
+  })
+})
+
 app.listen(process.env.PORT || 8081)
