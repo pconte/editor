@@ -7,7 +7,7 @@
         <li>
           <span><b>{{ file.fileName }}</b></span><br />
           <span>{{ file.schemaName }}</span><br />
-          <router-link :to="{ path: `/files/${file.fileName.split('.')[0]}` }">visit file form</router-link>
+          <router-link :to="{ path: `/files/${file.fileName}` }">visit file form</router-link>
         </li>
       </ul>
     </div>

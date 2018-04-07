@@ -51,7 +51,7 @@ app.get('/files/:fileName', (req, res) => {
   var fs = require('fs')
   var fileName = req.params.fileName
 
-  fs.readFile('../files/' + fileName + '.json', (err, file) => {
+  fs.readFile('../files/' + fileName, (err, file) => {
     var model = JSON.parse(file)
     var schema
     // schema = GenerateSchema.json('Test', JSON.parse(file))
@@ -62,6 +62,7 @@ app.get('/files/:fileName', (req, res) => {
     //  3. generate schema using GenerateSchema
 
     if (model.$schema) {
+      console.log(model.$schema)
       http.get(model.$schema, (res2) => {
         let data = ''
 
@@ -82,11 +83,13 @@ app.get('/files/:fileName', (req, res) => {
   })
 })
 
-app.get('/schema', (req, res) => {
+app.get('/schemas/:fileName', (req, res) => {
   var fs = require('fs')
+  var fileName = req.params.fileName
+  console.log(fileName)
 
-  fs.readFile('../schemas/newsletter-subscription.json', (err, data) => {
-    res.send(JSON.parse(data))
+  fs.readFile('../schemas/' + fileName, (err, file) => {
+    res.send(JSON.parse(file))
   })
 })
 
