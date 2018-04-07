@@ -7,7 +7,7 @@ export default {
   fetchFile () {
     return Api().get('file')
   },
-  postItem (payload) {
+  submitFile (payload) {
     return Api().post('item', payload)
   }
 }

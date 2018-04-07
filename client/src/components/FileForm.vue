@@ -2,20 +2,20 @@
   <div class="item">
     <h1>Item</h1>
     <form-schema ref="formSchema" :schema="schema" v-model="model2" @submit="submit">
-      <button type="submit">Subscribe</button>
+      <button type="submit">Submit</button>
     </form-schema>
   </div>
 </template>
 
 <script>
-import ItemsService from '@/services/ItemsService'
+import FilesService from '@/services/FilesService'
 import FormSchema from 'vue-json-schema'
 import schema from '@/schemas/newsletter-subscription.json'
 
 import _ from 'lodash'
 
 export default {
-  name: 'item',
+  name: 'file-form',
   computed: {
     model2: {
       get () {
@@ -39,11 +39,11 @@ export default {
       // You can submit your model to the server here
       e.preventDefault()
 
-      const response = await ItemsService.postItem(this.model)
+      const response = await FilesService.submitFile(this.model)
       this.model = response.data
     },
     async getFile () {
-      const response = await ItemsService.fetchFile()
+      const response = await FilesService.fetchFile()
       // console.log(response.data)
       this.model = response.data
       // console.log(this.$refs.formSchema.form())
