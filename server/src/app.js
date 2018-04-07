@@ -9,6 +9,8 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
+const GenerateSchema = require('generate-schema')
+
 //TODO: new endpoint for generating schema from existing config files
 // - either all config files in a directory (possibly nested with subdirectories) or a specific config file
 
@@ -68,13 +70,18 @@ app.get('/files', (req, res) => {
   })
 })
 
-app.get('/files/:path', (req, res) => {
+app.get('/files/:fileName', (req, res) => {
   var fs = require('fs')
-  var path = req.params.path
+  var fileName = req.params.fileName
 
-  fs.readFile('../files/' + path + '.json', (err, file) => {
+  fs.readFile('../files/' + fileName + '.json', (err, file) => {
     console.log(file)
-    res.send(JSON.parse(file))
+    var schema = GenerateSchema.json('Test', JSON.parse(file))
+    console.log(schema)
+    res.send({
+      'model': JSON.parse(file),
+      'schema': schema
+    })
   })
 })
 

@@ -10,10 +10,17 @@ installed vue.js
 - did not use TypeScript
 
 possibilities:
-- generate json-schema files from existing config files (https://jsonschema.net/)
+- generate json-schema files from existing model files (https://jsonschema.net/)
 - use this instead: https://github.com/Nijikokun/generate-schema
-- store json-schema files on the server in parallel with the config files
-- server responses include the json-schema and the config
+    - generated schemas can either be stored/cached in the filesystem in parallel with the model files
+    - or not cached and just regenerated every time
+    - benefit of storing/caching means the schemas can be enhanced manually with extra information
+- server responses include the json-schema and the model
+
+filesystem tree:
+- use https://www.npmjs.com/package/directory-tree
+- navigate tree of config files
+- click on any file to view the form
 
 for production:
 - git clone
