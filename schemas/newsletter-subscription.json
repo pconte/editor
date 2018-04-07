@@ -23,6 +23,20 @@
         "lists": {
             "type": "string",
             "enum": ["Daily New", "Promotion"]
+        },
+        "other": {
+            "type": "object",
+            "properties": {
+                "optional": {
+                    "type": "string", 
+                    "minLength": 8, 
+                    "maxLength": 80, 
+                    "attrs": {
+                        "placeholder": "Optional",
+                        "title": "Optional Text"
+                    }
+                }
+            }
         }
     },
     "additionalProperties": false,

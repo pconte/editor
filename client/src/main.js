@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueTreeNavigation from 'vue-tree-navigation'
+
+Vue.use(VueTreeNavigation)
 
 Vue.config.productionTip = false
 

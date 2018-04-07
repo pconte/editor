@@ -3,10 +3,11 @@
     <router-link :to="{ path: '/' }">Home</router-link>
     <router-link :to="{ path: '/files' }">List of Files</router-link>
     <h1>Files</h1>
+    <vue-tree-navigation :items="files" />
     <ul>
       <li v-for="(file, index) in files" :key="index">
-        <span><b>{{ file.fileName }}</b></span><br />
-        <router-link :to="{ path: `/files/${file.fileName}` }">visit file form</router-link>
+        <span><b>{{ file.name }}</b></span><br />
+        <router-link v-if="file.type !== 'directory'" :to="{ path: `/files/${file.name}` }">visit file form</router-link>
       </li>
     </ul>
   </div>
@@ -29,6 +30,7 @@ export default {
     async getFiles () {
       const response = await FilesService.fetchFiles()
       this.files = response.data
+      console.log(this.files)
     }
   }
 }
@@ -42,6 +44,7 @@ export default {
     margin: 0;
   }
   li {
+    text-align: left;
     display: block;
     padding: 10px;
     margin: 10px;

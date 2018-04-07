@@ -12,6 +12,16 @@ app.use(cors())
 const GenerateSchema = require('generate-schema')
 const http = require('http')
 const dirTree = require('directory-tree')
+const _ = require('lodash')
+
+function replaceKeysDeep(obj, keysMap) { // keysMap = { oldKey1: newKey1, oldKey2: newKey2, etc...
+  return _.transform(obj, function(result, value, key) { // transform to a new object
+
+    var currentKey = keysMap[key] || key; // if the key is in keysMap use the replacement, if not use the original key
+
+    result[currentKey] = _.isObject(value) ? replaceKeysDeep(value, keysMap) : value; // if the key is an object run it through the inner function - replaceKeys
+  });
+}
 
 //TODO: new endpoint for generating schema from existing config files
 // - either all config files in a directory (possibly nested with subdirectories) or a specific config file
@@ -27,20 +37,25 @@ app.post('/file', (req, res) => {
 
 app.get('/files', (req, res) => {
   var fs = require('fs')
-  var files = []
+  // var files = []
 
-  const tree = dirTree('../files')
+  var tree = dirTree('../files')
   console.log(tree)
+  //TODO: replace path key with href key, trim leading ../
 
-  fs.readdir('../files/', (err, fileNames) => {
-    fileNames.forEach(fileName => {
-      files.push({
-        'fileName': fileName
-      })
-    })
+  tree = replaceKeysDeep(tree.children, { 'path': 'href' })
 
-    res.send(files)
-  })
+  res.send(tree)
+
+  // fs.readdir('../files/', (err, fileNames) => {
+  //   fileNames.forEach(fileName => {
+  //     files.push({
+  //       'fileName': fileName
+  //     })
+  //   })
+
+  //   res.send(files)
+  // })
 })
 
 app.get('/files/:fileName', (req, res) => {
