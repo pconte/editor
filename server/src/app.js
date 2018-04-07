@@ -39,15 +39,7 @@ app.get('/files', (req, res) => {
       })
     })
 
-    fs.readdir('../schemas/', (err, fileNames) => {
-      fileNames.forEach(fileName => {
-        var fileIndex = files.findIndex(obj => obj.fileName === fileName)
-
-        files[fileIndex]['schemaName'] = fileName
-      })
-
-      res.send(files)
-    })
+    res.send(files)
   })
 })
 
