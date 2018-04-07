@@ -1,5 +1,6 @@
 {
-    "name": "Paul",
+    "$schema": "http://localhost:8081/schema",
+    "name": "Paul Conte",
     "email": "paul.conte@getinsured.com",
     "lists": "Daily New"
 }

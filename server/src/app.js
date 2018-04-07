@@ -18,26 +18,6 @@ app.get('', (req, res) => {
   res.sendfile('index.html');
 })
 
-app.get('/items', (req, res) => {
-  //TODO: fs.readdir ... list of all config files and corresponding schema files
-  res.send(
-    [{
-      title: "Hello World!",
-      description: "Hi there! How are you?"
-    }]
-  )
-})
-
-app.get('/item', (req, res) => {
-  //TODO: fs.read ... open a config file and corresponding schema file
-  res.send(
-    {
-      title: "Hello World!",
-      description: "Hi there! How are you?  Item"
-    }
-  )
-})
-
 app.post('/item', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   //TODO: persist posted data to file system
@@ -54,7 +34,7 @@ app.get('/files', (req, res) => {
   fs.readdir('../files/', (err, fileNames) => {
     fileNames.forEach(fileName => {
       files.push({
-        "fileName": fileName
+        'fileName': fileName
       })
     })
 
@@ -62,7 +42,7 @@ app.get('/files', (req, res) => {
       fileNames.forEach(fileName => {
         var fileIndex = files.findIndex(obj => obj.fileName === fileName)
 
-        files[fileIndex].schemaName = fileName
+        files[fileIndex]['schemaName'] = fileName
       })
 
       res.send(files)

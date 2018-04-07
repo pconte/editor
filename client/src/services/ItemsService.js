@@ -1,11 +1,11 @@
 import Api from '@/services/Api'
 
 export default {
-  fetchItems () {
-    return Api().get('items')
+  fetchFiles () {
+    return Api().get('files')
   },
-  fetchItem () {
-    return Api().get('item')
+  fetchFile () {
+    return Api().get('file')
   },
   postItem (payload) {
     return Api().post('item', payload)

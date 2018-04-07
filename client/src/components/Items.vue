@@ -4,10 +4,12 @@
     This file will list all the items.
 
     <div v-for="item in items" :key="item">
-      <p>
-        <span><b>{{ item.title }}</b></span><br />
-        <span>{{ item.description }}</span>
-      </p>
+      <ul>
+        <li>
+          <span><b>{{ item.fileName }}</b></span><br />
+          <span>{{ item.schemaName }}</span>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -27,9 +29,14 @@ export default {
   },
   methods: {
     async getItems () {
-      const response = await ItemsService.fetchItems()
+      const response = await ItemsService.fetchFiles()
+      console.log(response.data)
       this.items = response.data
     }
   }
 }
 </script>
+
+<style scoped>
+  li { border: solid 1px red !important; }
+</style>
