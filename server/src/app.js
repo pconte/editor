@@ -10,6 +10,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 const GenerateSchema = require('generate-schema')
+const http = require('http')
 
 //TODO: new endpoint for generating schema from existing config files
 // - either all config files in a directory (possibly nested with subdirectories) or a specific config file
@@ -55,13 +56,34 @@ app.get('/files/:fileName', (req, res) => {
   var fileName = req.params.fileName
 
   fs.readFile('../files/' + fileName + '.json', (err, file) => {
-    console.log(file)
-    var schema = GenerateSchema.json('Test', JSON.parse(file))
-    console.log(schema)
-    res.send({
-      'model': JSON.parse(file),
-      'schema': schema
-    })
+    var model = JSON.parse(file)
+    var schema
+    // schema = GenerateSchema.json('Test', JSON.parse(file))
+
+    if (model.$schema) {
+      http.get(model.$schema, (res2) => {
+        let data = ''
+
+        res2.on('data', (chunk) => {
+          data += chunk
+        })
+
+        res2.on('end', () => {
+          schema = JSON.parse(data)
+
+          res.send({
+            'model': JSON.parse(file),
+            'schema': schema
+          })
+        })
+      })
+    }
+
+    // console.log(schema)
+    // res.send({
+    //   'model': JSON.parse(file),
+    //   'schema': schema
+    // })
   })
 })
 
