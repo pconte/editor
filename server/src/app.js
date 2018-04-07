@@ -11,6 +11,7 @@ app.use(cors())
 
 const GenerateSchema = require('generate-schema')
 const http = require('http')
+const dirTree = require('directory-tree')
 
 //TODO: new endpoint for generating schema from existing config files
 // - either all config files in a directory (possibly nested with subdirectories) or a specific config file
@@ -27,6 +28,9 @@ app.post('/file', (req, res) => {
 app.get('/files', (req, res) => {
   var fs = require('fs')
   var files = []
+
+  const tree = dirTree('../files')
+  console.log(tree)
 
   fs.readdir('../files/', (err, fileNames) => {
     fileNames.forEach(fileName => {
