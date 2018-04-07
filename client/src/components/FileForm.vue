@@ -1,5 +1,7 @@
 <template>
   <div class="file-form">
+    <router-link :to="{ path: '/' }">Home</router-link>
+    <router-link :to="{ path: '/files' }">List of Files</router-link>
     <h1>File Form</h1>
     <form-schema v-if="schema" ref="formSchema" :schema="schema" v-model="model2" @submit="submit">
       <button type="submit">Submit</button>

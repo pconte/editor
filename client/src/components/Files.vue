@@ -1,7 +1,8 @@
 <template>
   <div class="files">
+    <router-link :to="{ path: '/' }">Home</router-link>
+    <router-link :to="{ path: '/files' }">List of Files</router-link>
     <h1>Files</h1>
-
     <div v-for="file in files" :key="file">
       <ul>
         <li>
