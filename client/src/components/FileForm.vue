@@ -37,7 +37,7 @@ export default {
     },
 
     submit (e) {
-      FilesService.submitFile(this.model)
+      FilesService.submitFile(this.$route.params.fileName, this.model)
 
       e.preventDefault()
     }

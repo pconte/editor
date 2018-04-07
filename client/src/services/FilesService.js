@@ -7,7 +7,10 @@ export default {
   fetchFile (fileName) {
     return Api().get(`files/${fileName}`)
   },
-  submitFile (payload) {
-    return Api().post('file', payload)
+  submitFile (fileName, model) {
+    return Api().post('file', {
+      'fileName': fileName,
+      'model': model
+    })
   }
 }
