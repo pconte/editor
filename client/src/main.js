@@ -4,8 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueTreeNavigation from 'vue-tree-navigation'
+import VueReact from 'vue-react'
+import ReactJsonschemaForm from 'react-jsonschema-form'
 
 Vue.use(VueTreeNavigation)
+Vue.use(VueReact)
+
+Vue.react('ReactJsonschemaForm', ReactJsonschemaForm)
 
 Vue.config.productionTip = false
 

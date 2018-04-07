@@ -6,6 +6,7 @@
     <form-schema v-if="schema" ref="formSchema" :schema="schema" v-model="model2" @submit="submit">
       <button type="submit">Submit</button>
     </form-schema>
+    <react-jsonschema-form v-if="schema" ref="form2" :schema="schema" v-bind:formData="model2" :onSubmit="submit2" />
   </div>
 </template>
 
@@ -40,6 +41,11 @@ export default {
       FilesService.submitFile(this.$route.params.fileName, this.model)
 
       e.preventDefault()
+    },
+
+    submit2 (model) {
+      console.log(model.formData)
+      FilesService.submitFile(this.$route.params.fileName, model.formData)
     }
   },
 
