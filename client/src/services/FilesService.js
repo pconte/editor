@@ -4,10 +4,10 @@ export default {
   fetchFiles () {
     return Api().get('files')
   },
-  fetchFile () {
-    return Api().get('file')
+  fetchFile (fileName) {
+    return Api().get(`files/${fileName}`)
   },
   submitFile (payload) {
-    return Api().post('item', payload)
+    return Api().post('file', payload)
   }
 }

@@ -19,13 +19,9 @@ app.get('', (req, res) => {
   res.sendfile('index.html');
 })
 
-app.post('/item', (req, res) => {
-  res.setHeader('Content-Type', 'application/json')
+app.post('/file', (req, res) => {
   //TODO: persist posted data to file system
   console.log(req.body);
-  res.send(
-    req.body
-  )
 })
 
 app.get('/files', (req, res) => {
@@ -60,6 +56,11 @@ app.get('/files/:fileName', (req, res) => {
     var schema
     // schema = GenerateSchema.json('Test', JSON.parse(file))
 
+    // TODO: how is the schema provided?
+    //  1. url is available as $schema prop on model, use http.get(model.$schema)
+    //  2. schema.json file exists on filesystem
+    //  3. generate schema using GenerateSchema
+
     if (model.$schema) {
       http.get(model.$schema, (res2) => {
         let data = ''
@@ -72,27 +73,12 @@ app.get('/files/:fileName', (req, res) => {
           schema = JSON.parse(data)
 
           res.send({
-            'model': JSON.parse(file),
+            'model': model,
             'schema': schema
           })
         })
       })
     }
-
-    // console.log(schema)
-    // res.send({
-    //   'model': JSON.parse(file),
-    //   'schema': schema
-    // })
-  })
-})
-
-app.get('/file', (req, res) => {
-  var fs = require('fs')
-
-  fs.readFile('../files/newsletter-subscription.json', (err, file) => {
-    console.log(file)
-    res.send(JSON.parse(file))
   })
 })
 
@@ -100,7 +86,6 @@ app.get('/schema', (req, res) => {
   var fs = require('fs')
 
   fs.readFile('../schemas/newsletter-subscription.json', (err, data) => {
-    console.log(data)
     res.send(JSON.parse(data))
   })
 })
