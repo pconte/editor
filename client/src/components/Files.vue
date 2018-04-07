@@ -6,7 +6,8 @@
       <ul>
         <li>
           <span><b>{{ file.fileName }}</b></span><br />
-          <span>{{ file.schemaName }}</span>
+          <span>{{ file.schemaName }}</span><br />
+          <router-link :to="{ path: `/files/${file.fileName.split('.')[0]}` }">visit file form</router-link>
         </li>
       </ul>
     </div>
@@ -36,5 +37,15 @@ export default {
 </script>
 
 <style scoped>
-  li { border: solid 1px red !important; }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    display: inline-block;
+    padding: 10px;
+    margin: 0;
+    background: #f7f7f7;
+  }
 </style>

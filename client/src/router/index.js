@@ -19,8 +19,13 @@ export default new Router({
       component: Files
     },
     {
-      path: '/file',
+      path: '/files/:fileName',
       name: 'FileForm',
+      component: FileForm
+    },
+    {
+      path: '/file',
+      name: 'File',
       component: FileForm
     }
   ]

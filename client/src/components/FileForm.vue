@@ -23,7 +23,7 @@ export default {
   }),
 
   mounted () {
-    this.getFile('newsletter-subscription')
+    this.getFile(this.$route.params.fileName)
   },
 
   methods: {
@@ -53,3 +53,17 @@ export default {
   }
 }
 </script>
+
+<style>
+  form {
+    display: inline-block;
+    padding: 10px;
+    background: #f7f7f7;
+  }
+
+  input,
+  select {
+    display: block;
+    margin: 10px;
+  }
+</style>
