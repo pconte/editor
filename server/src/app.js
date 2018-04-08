@@ -33,6 +33,7 @@ app.get('', (req, res) => {
 app.post('/file', (req, res) => {
   //TODO: persist posted data to file system
   console.log(req.body);
+  res.send('')
 })
 
 app.get('/files', (req, res) => {
@@ -43,7 +44,7 @@ app.get('/files', (req, res) => {
   console.log(tree)
   //TODO: replace path key with href key, trim leading ../
 
-  tree = replaceKeysDeep(tree.children, { 'path': 'href' })
+  //tree = replaceKeysDeep(tree, { 'path': 'href' })
 
   res.send(tree)
 
@@ -61,6 +62,7 @@ app.get('/files', (req, res) => {
 app.get('/files/:fileName', (req, res) => {
   var fs = require('fs')
   var fileName = req.params.fileName
+  console.log(fileName)
 
   fs.readFile('../files/' + fileName, (err, file) => {
     var model = JSON.parse(file)

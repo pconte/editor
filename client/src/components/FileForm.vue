@@ -6,7 +6,7 @@
     <form-schema v-if="schema" ref="formSchema" :schema="schema" v-model="model2" @submit="submit">
       <button type="submit">Submit</button>
     </form-schema>
-    <react-jsonschema-form v-if="schema" ref="form2" :schema="schema" v-bind:formData="model2" :onSubmit="submit2" />
+    <react-jsonschema-form v-if="schema" ref="form2" :schema="schema" v-model="model2" :formData="model2" :onSubmit="submit2" :onError="error" />
   </div>
 </template>
 
@@ -46,6 +46,10 @@ export default {
     submit2 (model) {
       console.log(model.formData)
       FilesService.submitFile(this.$route.params.fileName, model.formData)
+    },
+
+    error () {
+      console.log('error')
     }
   },
 
@@ -64,9 +68,21 @@ export default {
 
 <style>
   form {
+    text-align: left;
     display: inline-block;
     padding: 10px;
     background: #f7f7f7;
+  }
+
+  legend {
+    background: black;
+    color: white;
+    padding: 5px;
+  }
+
+  label {
+    background: #cccccc;
+    padding: 5px;
   }
 
   input,
