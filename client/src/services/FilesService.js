@@ -8,9 +8,6 @@ export default {
     return Api().get(`files/${fileName}`)
   },
   submitFile (fileName, model) {
-    return Api().post('file', {
-      'fileName': fileName,
-      'model': model
-    })
+    return Api().put(`files/${fileName}`, model)
   }
 }
