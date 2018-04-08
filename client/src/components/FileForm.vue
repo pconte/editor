@@ -75,17 +75,27 @@ export default {
     border-right: solid 2px black;
   }
 
+  fieldset {
+    padding: 10px 20px;
+    border: none;
+    border-left: solid 2px black;
+  }
+
   legend {
     background: white;
     font-weight: bold;
     border-bottom: solid 2px black;
     border-right: solid 2px black;
     padding: 5px;
-    margin: 0 0 10px -20px;
+    font-style: italic;
+    position: relative;
+    top: 10px;
+    left: -30px;
   }
 
   label {
     font-weight: bold;
+    display: inline-block;
   }
 
   label + div {
@@ -101,8 +111,7 @@ export default {
   select {
     display: inline-block;
     margin: 10px;
-    padding: 10px;
-    appearance: none;
+    padding: 5px;
     background: white;
   }
 
