@@ -1,9 +1,9 @@
 {
-    "$schema": "http://localhost:8081/schemas/newsletter-subscription.json",
-    "name": "Paul Conte",
-    "email": "paul.conte@getinsured.com",
-    "lists": "Daily New",
-    "other": {
-        "optional": "Hello!"
-    }
+	"name": "Paul Conte",
+	"email": "paul.conte@getinsured.com",
+	"lists": "Daily New",
+	"other": {
+		"optional": "Hello!"
+	},
+	"$schema": "http://localhost:8081/schemas/newsletter-subscription.json"
 }

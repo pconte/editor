@@ -82,7 +82,7 @@ export default {
   }
 
   legend {
-    background: white;
+    background: #f1f1f1;
     font-weight: bold;
     border-bottom: solid 2px black;
     border-right: solid 2px black;

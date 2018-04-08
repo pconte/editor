@@ -40,7 +40,7 @@ export default {
 
       this.files = this.deepMap(this.files, (val, key) => {
         if (key === 'path') {
-          return val.replace('../files/', '')
+          return val.replace('../files/', '').replace('/', '|')
         } else {
           return val
         }

@@ -5,7 +5,7 @@
       @click="toggle"
       @dblclick="changeType">
       {{ model.name }}
-      <router-link v-if="!isFolder" :to="{ path: `/files/${encodeURIComponent(model.path)}` }">visit file form</router-link>
+      <router-link v-if="!isFolder" :to="{ path: `/files/${model.path}` }">visit file form</router-link>
       <span v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
     </div>
     <ul v-show="open" v-if="isFolder">

@@ -27,7 +27,7 @@ app.get('/files', (req, res) => {
 })
 
 app.get('/files/:fileName', (req, res) => {
-  var fileName = req.params.fileName
+  var fileName = req.params.fileName.replace('|', '/')
   console.log(fileName)
 
   fs.readFile('../files/' + fileName, (err, file) => {
@@ -68,12 +68,14 @@ app.get('/files/:fileName', (req, res) => {
 })
 
 app.put('/files/:fileName', (req, res) => {
-  var fileName = req.params.fileName
+  var fileName = req.params.fileName.replace('|', '/')
   console.log(fileName)
 
-  //TODO: persist posted data to file system
-  console.log(req.body);
-  res.send('')
+  fs.writeFile('../files/' + fileName, JSON.stringify(req.body, null, '\t'), (err) => {
+    if (err) throw err;
+  })
+
+  res.send(req.body)
 })
 
 app.get('/schemas/:fileName', (req, res) => {
