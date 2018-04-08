@@ -1,11 +1,10 @@
 <template>
   <div class="file-form">
-    <router-link :to="{ path: '/' }">Home</router-link>
-    <router-link :to="{ path: '/files' }">List of Files</router-link>
-    <h1>File Form</h1>
+    <!--
     <form-schema v-if="schema" ref="formSchema" :schema="schema" v-model="model2" @submit="submit">
       <button type="submit">Submit</button>
     </form-schema>
+    -->
     <react-jsonschema-form v-if="schema" ref="form2" :schema="schema" v-model="model2" :formData="model2" :onSubmit="submit2" :onError="error" />
   </div>
 </template>
@@ -72,22 +71,46 @@ export default {
     display: inline-block;
     padding: 10px;
     background: #f7f7f7;
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
   }
 
   legend {
-    background: black;
-    color: white;
+    background: white;
+    font-weight: bold;
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
     padding: 5px;
+    margin: 0 0 10px -20px;
   }
 
   label {
-    background: #cccccc;
-    padding: 5px;
+    font-weight: bold;
+  }
+
+  label + div {
+    display: none;
+  }
+
+  .required {
+    color: red;
+    margin-left: 3px;
   }
 
   input,
   select {
-    display: block;
+    display: inline-block;
     margin: 10px;
+    padding: 10px;
+    appearance: none;
+    background: white;
+  }
+
+  button {
+    float: right;
+    border-radius: 10px;
+    padding: 5px;
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
   }
 </style>
